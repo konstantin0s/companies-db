@@ -30,46 +30,6 @@ SORT
 LIMIT
 20
 
-name:"Spotify"
-number_of_employees:5000
-name:"PCH International"
-number_of_employees:5000
-name:"McAfee"
-number_of_employees:5000
-name:"JDS Uniphase Corporation"
-number_of_employees:5000
-name:"Air Astana Airlines"
-number_of_employees:5000
-name:"United Internet"
-number_of_employees:5000
-name:"Vcare Call Center"
-number_of_employees:5000
-name:"Nintendo"
-number_of_employees:5080
-name:"Hexaware Technologies"
-number_of_employees:5200
-name:"Facebook"
-number_of_employees:5299
-name:"OpenText"
-number_of_employees:5300
-name:"LSI"
-number_of_employees:5400
-name:"CPM Braxis"
-number_of_employees:5400
-name:"Microchip Technologies"
-number_of_employees:5500
-name:"Mediaset"
-number_of_employees:5729
-name:"Mindray Medical International"
-number_of_employees:5763
-name:"Baidu"
-number_of_employees:6000
-name:"Dentsu"
-number_of_employees:6000
-name:"Tata Communications"
-number_of_employees:6000
-name:"Atmel"
-number_of_employees:6000
  -->
 
 ### 3. All the companies founded between 2000 and 2005, both years included. Retrieve only the `name` and `founded_year` fileds.
@@ -83,39 +43,6 @@ SORT
 {name: 1, founded_year: 1}
 LIMIT
 0
-
-name:"10East"
-founded_year:2002
-name:"1915 Studios"
-founded_year:2004
-name:"1938 Media"
-founded_year:2005
-name:"1Scan"
-founded_year:2004
-name:"2 Minutes"
-founded_year:2000
-name:"247techsupport"
-founded_year:2005
-name:"25 Pixels Media"
-founded_year:2001
-name:"2GeeksinaLab"
-founded_year:2004
-name:"2GeeksinaLab"
-founded_year:2004
-name:"2threads"
-founded_year:2004
-name:"302designs"
-founded_year:2004
-name:"32bytes"
-founded_year:2001
-name:"360innovate"
-founded_year:2005
-name:"360is"
-founded_year:2002
-name:"3Dynamics"
-founded_year:2004
-name:"3Jam"
-founded_year:2005
  -->
 
 ### 4. All the companies that had a Valuation Amount of more than 100.000.000 and have been founded before 2010. Retrieve only the `name` and `ipo` fields.
@@ -130,128 +57,122 @@ SKIP
 0
 LIMIT
 0
-name:"Twitter"
-ipo:Object
-valuation_amount:18100000000
-name:"Facebook"
-ipo:Object
-valuation_amount:104000000000
-name:"Yelp"
-ipo:Object
-valuation_amount:1300000000
-name:"LinkedIn"
-ipo:Object
-valuation_amount:9310000000
-name:"Brightcove"
-ipo:Object
-valuation_amount:290000000
-name:"Amazon"
-ipo:Object
-valuation_amount:100000000000
-name:"KIT digital"
-ipo:Object
-valuation_amount:235000000
-name:"Nielsen"
-ipo:Object
-valuation_amount:1600000000
-name:"OpenTable"
-ipo:Object
-valuation_amount:1050000000
-name:"ChannelAdvisor"
-ipo:Object
-valuation_amount:287000000
-name:"Jive Software"
-ipo:Object
-valuation_amount:1000000000
-name:"Zillow"
-ipo:Object
-valuation_amount:2550000000
-name:"Wix"
-ipo:Object
-valuation_amount:750000000
-name:"Shutterfly"
-ipo:Object
-name:"TripAdvisor"
-ipo:Object
-valuation_amount:3273770000
-name:"Salesforce"
-ipo:Object
-valuation_amount:110000000
-name:"HomeAway"
-ipo:Object
-valuation_amount:3000000000
-name:"QuinStreet"
-ipo:Object
-valuation_amount:140000000
-name:"Rackspace"
-ipo:Object
-valuation_amount:5440000000
-name:"BMC Software"
-ipo:Object
-valuation_amount:6000000000
+
 
  -->
 
 ### 5. All the companies that have less than 1000 employees and have been founded before 2005. Order them by the number of employees and limit the search to 10 companies.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here
+       FILTER
+{number_of_employees: {$lt: 1000}, founded_year: {$lt: 2005 } }
+PROJECT
+{name: 1, _id: 0, number_of_employees: 1 }
+SORT
+{ field: 1, number_of_employees: -1 }
+SKIP
+0
+LIMIT
+10
+
+
+ -->
 
 ### 6. All the companies that don't include the `partners` field.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here
+      
+ -->
 
 ### 7. All the companies that have a null type of value on the `category_code` field.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here
+    FILTER
+{ category_code: {$eq: null } }
+PROJECT
+{name: 1, category_code: 1, _id: 0 }
+SORT
+SKIP
+0
+LIMIT
+0
+ -->
 
 ### 8. All the companies that have at least 100 employees but less than 1000. Retrieve only the `name` and `number of employees` fields.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here 
+{number_of_employees: {$gt: 100, $lt: 1000}} {name: 1, number_of_employees: 1}
+-->
 
 ### 9. Order all the companies by their IPO price descendently.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here 
+{"ipo.valuation_amount": -1}
+-->
 
 ### 10. Retrieve the 10 companies with more employees, order by the `number of employees`
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here
+{number_of_employees: -1} limit: 10
+ -->
 
 ### 11. All the companies founded on the second semester of the year. Limit your search to 1000 companies.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here{
+    founded_month: {$gt: 6}}
+     limit: 1000
+ -->
 
 ### 12. All the companies that have been 'deadpooled' after the third year.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here 
+   {deadpooled_year: {$gt: 3}}
+-->
 
 ### 13. All the companies founded before 2000 that have and acquisition amount of more than 10.000.000
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here 
+{founded_year: {$lt: 2000}, "acquisition.price_amount": {$gt: 10000000}}
+-->
 
 ### 14. All the companies that have been acquired after 2015, order by the acquisition amount, and retrieve only their `name` and `acquisiton` field.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here 
+  {founded_year: {$gt: 2015} {name: 1, acquisition: 1} {"acquisition.price_amount": 1}
+ -->
 
 ### 15. Order the companies by their `founded year`, retrieving only their `name` and `founded year`.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here 
+    name: 1, founded_year: 1} {founded_year: 1}
+-->
 
 ### 16. All the companies that have been founded on the first seven days of the month, including the seventh. Sort them by their `aquisition price` descendently. Limit the search to 10 documents.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here 
+   {founded_day: {$lte: 7}} {"acquisition.price_amount": -1} limit: 10
+-->
 
 ### 17. All the companies on the 'web' `category` that have more than 4000 employees. Sort them by the amount of employees in ascendant order.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here 
+   {category_code: {$eq: "web"}, number_of_employees: {$gt: 4000}} {number_of_employees: -1}
+-->
 
 ### 18. All the companies which their acquisition amount is more than 10.000.000, and currency are 'EUR'.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here
+    {"acquisition.price_amount": {$gt: 10000000}, "acquisition.price_currency_code" : {$eq: "EUR"}}
+ -->
 
 ### 19. All the companies that have been acquired on the first trimester of the year. Limit the search to 10 companies, and retrieve only their `name` and `acquisition` fields.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here
+    {"acquisition.acquired_month": {$lt: 4}} {name: 1, acquisition: 1}
+ -->
 
 ### 20. All the companies that have been founded between 2000 and 2010, but have not been acquired before 2011.
 
-<!-- Your Code Goes Here -->
+<!-- Your Code Goes Here
+{founded_year: {$gte: 2000, $lt: 2015}, "acquisition.acquired_year": {$gte: 2011, $eq: null}}
+ -->
